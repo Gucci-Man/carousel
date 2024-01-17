@@ -59,8 +59,8 @@ it('works when you click on the left arrow', function () {
 
   // move forward than backward
   const rightArrow = container.querySelector(".bi-arrow-right-circle");
-  const leftArrow = container.querySelector(".bi-arrow-left-circle");
   fireEvent.click(rightArrow);
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
   fireEvent.click(leftArrow);
 
   // expect the first image to show, but not the second
@@ -72,3 +72,33 @@ it('works when you click on the left arrow', function () {
   ).toBeInTheDocument();
 
 });
+
+it('Left arrow is missing when on first image', function () {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+  
+  // expect left arrow is missing when on first image
+  expect(container.querySelector(".bi-arrow-left-circle")).not.toBeInTheDocument();
+});
+
+it('Right arrow is missing when on last image', function () {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+
+  // Select right arrows and go right twice
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  // expect right arrow is missing when on first image
+  expect(container.querySelector(".bi-arrow-right-circle")).not.toBeInTheDocument();
+});
+
