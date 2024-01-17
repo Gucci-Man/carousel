@@ -34,7 +34,7 @@ import Card from "./Card";
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        {currCardIdx != 0 && <i
+        {currCardIdx !== 0 && <i
           className="bi bi-arrow-left-circle"
           onClick={goBackward}
         />}
